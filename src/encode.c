@@ -3,10 +3,12 @@
 #include <string.h>
 #include <assert.h>
 #include <encode.h>
+#include <stdint.h>
 
-char value_to_encoding(int value) {
-  assert(value >= 0 && value <= 63);
-  if (value >= 0 && value <= 25) {
+char value_to_encoding(unsigned int value) {
+  /* printf("value: %u\n", value); */
+  assert(value <= 63);
+  if (value <= 25) {
     return 'A'+value;
   }
 
@@ -62,31 +64,27 @@ void encode_two_paddings(char *string, char *output) {
 int encoded_result_length(char *input) {
   size_t string_size = strlen(input);
   int total_bits = string_size*8;
-#ifdef DEBUG
   int missing_bits = total_bits%24;
-#endif
   int total_padding = total_bits%3;
   int total_complete_blocks = total_bits/24;
-#ifdef DEBUG
   printf("total bits: %d\n", total_bits);
   printf("missing bits: %d\n", missing_bits);
   printf("total padding: %d\n", total_padding);
   printf("total complete blocks: %d\n", total_complete_blocks);
-#endif
   return (total_complete_blocks*4) + (total_padding != 0 ? 4 : 0);
 }
 
 char *encode(char *input) {
   size_t input_size = strlen(input);
-  int total_bits = input_size*8;
-  int total_complete_blocks = total_bits/24;
-  int total_padding = total_bits%3;
-  int input_idx=0, output_idx=0;
+  size_t total_bits = input_size*8;
+  size_t total_complete_blocks = total_bits/24;
+  size_t total_padding = total_bits%3;
+  size_t input_idx=0, output_idx=0;
 
   int l = encoded_result_length(input);
   char *output = calloc(l, sizeof(char));
 
-  for (int i=0; i<total_complete_blocks; ++i) {
+  for (size_t i=0; i<total_complete_blocks; ++i) {
     encode_block(input+input_idx, output+output_idx);
     input_idx+=3;
     output_idx+=4;

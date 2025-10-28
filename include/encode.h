@@ -2,7 +2,7 @@
 #define __ENCODE_H__
 #define ENCODE_INPUT "I love the way you lie"
 
-char value_to_encoding(int value);
+char value_to_encoding(unsigned int value);
 void encode_block(char *string, char *output);
 void encode_one_padding(char *input, char *output);
 void encode_two_padding(char *input, char *output);
