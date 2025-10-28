@@ -12,6 +12,6 @@ int main(int argc, char **argv) {
   read_from_file(argv[1], &input);
   char *result = encode(input);
   printf("%s\n", result);
-  free(result);
+  /* free(result); */
   return EXIT_SUCCESS;
 }

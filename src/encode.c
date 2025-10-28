@@ -30,33 +30,33 @@ char value_to_encoding(int value) {
   assert(0 && "UNREACHABLE");
 }
 
-void encode_block(char *string, char *result) {
+void encode_block(char *string, char *output) {
   int p1 = string[0]>>2;
   int p2 = (string[0] & 0x03)<<4 | (string[1]>>4);
   int p3 = (string[1] & 0x0F)<<2 | (string[2]>>6);
   int p4 = string[2] & 0x3F;
-  result[0]=value_to_encoding(p1);
-  result[1]=value_to_encoding(p2);
-  result[2]=value_to_encoding(p3);
-  result[3]=value_to_encoding(p4);
+  output[0]=value_to_encoding(p1);
+  output[1]=value_to_encoding(p2);
+  output[2]=value_to_encoding(p3);
+  output[3]=value_to_encoding(p4);
 }
 
-void encode_one_padding(char *string, char *result) {
+void encode_one_padding(char *string, char *output) {
   int p1 = string[0]>>2;
   int p2 = (string[0] & 0x03)<<4 | (string[1]>>4);
   int p3 = (string[1] & 0x0F)<<2 ;
-  result[0]=value_to_encoding(p1);
-  result[1]=value_to_encoding(p2);
-  result[2]=value_to_encoding(p3);
-  result[3]='=';
+  output[0]=value_to_encoding(p1);
+  output[1]=value_to_encoding(p2);
+  output[2]=value_to_encoding(p3);
+  output[3]='=';
 }
 
-void encode_two_paddings(char *string, char *result) {
+void encode_two_paddings(char *string, char *output) {
   int p1 = string[0]>>2;
   int p2 = (string[0] & 0x03)<<4;
-  result[0]=value_to_encoding(p1);
-  result[1]=value_to_encoding(p2);
-  result[2]=result[3]='=';
+  output[0]=value_to_encoding(p1);
+  output[1]=value_to_encoding(p2);
+  output[2]=output[3]='=';
 }
 
 int encoded_result_length(char *input) {
@@ -83,7 +83,7 @@ char *encode(char *input) {
   int total_padding = total_bits%3;
   int input_idx=0, output_idx=0;
 
-  int l = encoded_result_length(ENCODE_INPUT);
+  int l = encoded_result_length(input);
   char *output = calloc(l, sizeof(char));
 
   for (int i=0; i<total_complete_blocks; ++i) {
