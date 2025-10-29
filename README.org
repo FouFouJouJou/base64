@@ -27,3 +27,14 @@ This is a flake configuration. I trust if you're a NixOS user that you know what
     nix-command --extra-experimental-features \
     flakes run nix-darwin -- switch --flake .#$USER
 #+end_src
+
+* Documentation
+- To encode a file into base64.
+#+begin_src c
+  char file_name = "file.txt";
+  char file_content[1<<16];
+  ssize_t size = read_from_file(file_name, file_content);
+  char *encoding = encode(file_content, size);
+  printf("%s\n", encoding);
+  free(encoding);
+#+end_src
