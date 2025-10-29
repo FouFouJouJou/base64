@@ -7,7 +7,7 @@ char value_to_encoding(uint8_t value);
 void encode_block(char *string, char *output);
 void encode_one_padding(char *input, char *output);
 void encode_two_padding(char *input, char *output);
-int encoded_result_length(ssize_t size);
-char *encode(char *input, ssize_t size);
+int encoded_result_length(size_t size);
+char *encode(char *input, size_t size);
 
 #endif

@@ -5,8 +5,8 @@
 
 void decode_block(char *input, char *output);
 void decode_one_padding(char *input, char *output);
-void decode_two_padding(char *input, char *output);
-char *decode(char *input, ssize_t size);
+void decode_double_padding(char *input, char *output);
+char *decode(char *input, size_t size);
 uint8_t encoding_to_value(char c);
 
 #endif

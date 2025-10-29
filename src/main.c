@@ -11,11 +11,11 @@ int main(int argc, char **argv) {
     exit(1);
   }
   char input[1<<16];
-  ssize_t size = read_from_file(argv[1], input);
-  char *encoding = encode(input, size);
-  char *decoding = decode(encoding, strlen(encoding));
+  size_t size = read_from_file(argv[1], input);
   printf("Encoding: %s", input);
+  char *encoding = encode(input, size);
   printf("Base64: %s\n", encoding);
+  char *decoding = decode(encoding, strlen(encoding));
   printf("Decoding: %s", decoding);
   free(encoding);
   free(decoding);
