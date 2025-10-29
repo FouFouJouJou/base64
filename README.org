@@ -12,12 +12,20 @@ The meson official site provides clear instructions on how to install the build 
   sudo apt update
   sudo apt install meson
 #+end_src
-
 - For NixOS users
+
+#+NAME: Adding to configuration
 #+begin_src sh
   environment.systemPackages = pkgs [
     # packages
     python313Packages.meson
     # more packages
   ];
+#+end_src
+
+#+NAME: Installing using flakes
+#+begin_src sh
+  nix --extra-experimental-features \
+    nix-command --extra-experimental-features \
+    flakes run nix-darwin -- switch --flake .#$USER
 #+end_src
