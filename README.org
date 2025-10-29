@@ -14,8 +14,10 @@ The meson official site provides clear instructions on how to install the build 
 #+end_src
 
 - For NixOS users
-#+begin_src
-  environment.systemPackages = [
-    pkgs.python313Packages.meson
+#+begin_src sh
+  environment.systemPackages = pkgs [
+    # packages
+    python313Packages.meson
+    # more packages
   ];
 #+end_src
