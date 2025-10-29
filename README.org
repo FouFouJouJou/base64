@@ -1,4 +1,4 @@
-* base64 encoder/decoder
+* Base64 encoder/decoder
 This is a utility that attempts to simulate the basic functionality of a common CLI tool called [[https://command-not-found.com/base64][base64]]. It's an opportunity also to test out a build tool other than [[https://command-not-found.com/cmake][Cmake]].
 
 * Requirements
