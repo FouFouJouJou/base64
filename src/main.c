@@ -10,7 +10,6 @@ int main(int argc, char **argv) {
     exit(1);
   }
   char input[1<<16];
-  memset(input, 0, sizeof(input));
   ssize_t size = read_from_file(argv[1], input);
   char *result = encode(input, size);
   printf("%s\n", result);
