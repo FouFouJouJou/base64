@@ -62,18 +62,18 @@ void encode_two_paddings(char *string, char *output) {
 
 int encoded_result_length(ssize_t input_size) {
   int total_bits = input_size*8;
-#ifdef DEBUG
+/* #ifdef DEBUG */
   int missing_bits = total_bits%24;
-#endif
+/* #endif */
   int total_padding = total_bits%3;
   int total_complete_blocks = total_bits/24;
-#ifdef DEBUG
+/* #ifdef DEBUG */
   printf("total bytes: %zd\n", input_size);
   printf("total bits: %d\n", total_bits);
   printf("missing bits: %d\n", missing_bits);
   printf("total padding: %d\n", total_padding);
   printf("total complete blocks: %d\n", total_complete_blocks);
-#endif
+/* #endif */
   return (total_complete_blocks*4) + (total_padding != 0 ? 4 : 0);
 }
 

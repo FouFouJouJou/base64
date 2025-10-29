@@ -3,6 +3,7 @@
 #include <string.h>
 #include <assert.h>
 #include <encode.h>
+#include <decode.h>
 #include <io.h>
 
 int main(int argc, char **argv) {
@@ -11,8 +12,12 @@ int main(int argc, char **argv) {
   }
   char input[1<<16];
   ssize_t size = read_from_file(argv[1], input);
-  char *result = encode(input, size);
-  printf("%s\n", result);
-  free(result);
+  char *encoding = encode(input, size);
+  char *decoding = decode(encoding, strlen(encoding));
+  printf("Encoding: %s", input);
+  printf("Base64: %s\n", encoding);
+  printf("Decoding: %s", decoding);
+  free(encoding);
+  free(decoding);
   return EXIT_SUCCESS;
 }
