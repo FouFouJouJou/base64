@@ -2,4 +2,20 @@
 This is a utility that attempts to simulate the basic functionality of a common CLI tool called [[https://command-not-found.com/base64][base64]]. It's an opportunity also to test out a build tool other than [[https://command-not-found.com/cmake][Cmake]].
 
 * Requirements
-- [[https://mesonbuild.com/][Meson]] is a build tool meant for extremely fast and user-friendly project builds. It's the first time I ever try to use it, and due to the relative simplicity of this project, I decided it was more than suitable as first crack at it.
+[[https://mesonbuild.com/][Meson]] is the only dependency required a build tool meant for extremely fast and user-friendly project builds. It's the first time I ever try to use it. Due to the relative simplicity of this project, I decided it was more than suitable as first crack at it.
+
+* Installing Meson
+The meson official site provides clear instructions on how to install the build tool for all platforms. I have been working on both a =GNU/Debian= and =NixOS= system for base64.
+
+- For GNU/Debian users
+#+begin_src sh
+  sudo apt update
+  sudo apt install meson
+#+end_src
+
+- For NixOS users
+#+begin_src
+  environment.systemPackages = [
+    pkgs.python313Packages.meson
+  ];
+#+end_src
