@@ -33,8 +33,17 @@ This is a flake configuration. I trust if you're a NixOS user that you know what
 #+begin_src c
   char file_name = "file.txt";
   char file_content[1<<16];
-  ssize_t size = read_from_file(file_name, file_content);
+  ssize_t size = read_from_file(file_name, file_content); /* file_content = "I love the way you lie"; */
   char *encoding = encode(file_content, size);
-  printf("%s\n", encoding);
+  printf("Encoding: %s\n", encoding); /* Encoding: SSBsb3ZlIHRoZSB3YXkgeW91IGxpZQo= */
   free(encoding);
+#+end_src
+
+- To decode a base64 encoded buffer.
+#+begin_src c
+  char buffer[1<<16] = "SSBsb3ZlIHRoZSB3YXkgeW91IGxpZQo=";
+  size_t size = strlen(buffer);
+  char *decoding = decode(buffer, size);
+  printf("Decoding: %s\n", decoding); /* Decoding: I love the way you lie */
+  free(decoding);
 #+end_src
