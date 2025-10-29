@@ -9,9 +9,10 @@ int main(int argc, char **argv) {
   if (argc != 2) {
     exit(1);
   }
-  uint8_t input[1<<16];
-  read_from_file(argv[1], input);
-  char *result = encode((char *)input);
+  char input[1<<16];
+  memset(input, 0, sizeof(input));
+  ssize_t size = read_from_file(argv[1], input);
+  char *result = encode(input, size);
   printf("%s\n", result);
   free(result);
   return EXIT_SUCCESS;

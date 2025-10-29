@@ -3,6 +3,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-size_t read_from_file(const char *file_name, uint8_t *buffer);
+size_t read_from_file(const char *file_name, char *buffer);
 
 #endif
