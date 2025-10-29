@@ -28,6 +28,9 @@ This is a flake configuration. I trust if you're a NixOS user that you know what
     flakes run nix-darwin -- switch --flake .#$USER
 #+end_src
 
+* Building
+In progress...
+
 * Documentation
 - To encode a file into base64.
 #+begin_src c
