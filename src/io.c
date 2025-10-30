@@ -9,16 +9,18 @@
 size_t read_from_file(const char *const file_name, char *buffer) {
   int fd=open(file_name, O_RDONLY);
   if(fd == -1) {
+    perror("File not found");
     exit(80);
   }
   off_t raw_bytes=lseek(fd, 0, SEEK_END);
   lseek(fd, 0, SEEK_SET);
   ssize_t bytes_read=read(fd, buffer, raw_bytes);
   if (bytes_read == -1) {
+    perror("File not read");
     exit(80);
   }
   if (bytes_read != raw_bytes) {
-    perror("File not read\n");
+    perror("File not read fully");
   }
   buffer[bytes_read]='\0';
   close(fd);

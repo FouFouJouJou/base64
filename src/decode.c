@@ -66,8 +66,9 @@ void decode_double_padding(char *input, char *output) {
 
 char *decode(char *input, size_t size) {
   int total_blocks = size/4;
-  int is_double_padding = !strncmp(input+size-2, "==", 2);
-  int is_one_padding = !is_double_padding && !strncmp(input+size-1, "=", 1);
+  int base_idx = input[size-1] == '\n' ? size-2 : size-1;
+  int is_double_padding = !strncmp(input+base_idx-1, "==", 2);
+  int is_one_padding = !is_double_padding && !strncmp(input+base_idx, "=", 1);
   total_blocks-=(is_one_padding || is_double_padding) ? 1 : 0;
   int input_idx=0, output_idx=0;
 #ifdef DEBUG
