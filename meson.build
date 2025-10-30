@@ -1,4 +1,21 @@
-project('base64', 'c', version: '1.0', default_options: ['warning_level=3', 'werror=true'])
+project('base64',
+  'c',
+  version: '1.0',
+  default_options: ['warning_level=3', 'werror=true']
+)
 incdir = include_directories('include')
-c_sources = files('src/main.c', 'src/encode.c', 'src/io.c', 'src/decode.c')
-executable('base64', c_sources, include_directories: incdir)
+c_files = files(
+  'src/encode.c',
+  'src/io.c',
+  'src/decode.c'
+)
+base64_lib = shared_library(
+  'base64',
+  c_files, include_directories: incdir
+)
+executable(
+  'base64',
+  'src/main.c',
+  include_directories: incdir,
+  link_with: base64_lib
+)
