@@ -1,4 +1,5 @@
-project('base64',
+project(
+  'base64',
   'c',
   version: '1.0',
   default_options: ['warning_level=3', 'werror=true']
