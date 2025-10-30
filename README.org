@@ -29,7 +29,7 @@ This is a flake configuration. I trust if you're a NixOS user that you know what
 #+end_src
 
 * Building
-The library is built both statically and dynamically. All one needs to do is run a couple =meson= commands. The =bin= directory is where I personally store all my builds since it's more along [[https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard][The Filesystem Hierarchy Standard]].
+The library is built both statically and dynamically. All one needs to do is run a couple =meson= commands. The =bin= directory is where I personally store all my builds since it suits [[https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard][The Filesystem Hierarchy Standard]].
 - To setup the build direcotry
 #+begin_src sh
   meson setup bin

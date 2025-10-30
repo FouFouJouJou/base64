@@ -1,7 +1,7 @@
 project(
   'base64',
   'c',
-  version: '1.0',
+  version: '1.0.0',
   default_options: ['warning_level=3', 'werror=true']
 )
 incdir = include_directories('include')
@@ -10,9 +10,10 @@ c_files = files(
   'src/io.c',
   'src/decode.c'
 )
-base64_lib = shared_library(
+base64_lib = both_libraries(
   'base64',
-  c_files, include_directories: incdir
+  c_files, include_directories: incdir,
+  version: '1.0.0'
 )
 executable(
   'base64',
