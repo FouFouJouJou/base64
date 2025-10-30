@@ -29,7 +29,23 @@ This is a flake configuration. I trust if you're a NixOS user that you know what
 #+end_src
 
 * Building
-In progress...
+The library is built both statically and dynamically. All one needs to do is run a couple =meson= commands. The =bin= directory is where I personally store all my builds since it's more along [[https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard][The Filesystem Hierarchy Standard]].
+- To setup the build direcotry
+#+begin_src sh
+  meson setup bin
+#+end_src
+
+- To compile the library
+#+begin_src sh
+  cd bin && meson compile
+#+end_src
+
+- To run the main.c example
+#+begin_src sh
+  PATH_TO_FILE=~/Photos/sample.png
+  cd bin && ./base64 $PATH_TO_FILE
+#+end_src
+
 
 * Documentation
 - To encode a file into base64.
